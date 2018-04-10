@@ -1,0 +1,53 @@
+function playerMove(index) {
+  board.playMove(board.human, index)
+  learningBoard.playMove(board.human, index)
+  nnMove();
+}
+
+function nnMove() {
+  let normalizedInputs = [];
+
+  board.moves.map((move, i) => {
+    if(move === board.human) {
+      normalizedInputs[i] = -1;
+    } else if(move === board.computer) {
+      normalizedInputs[i] = 1;
+    } else {
+      normalizedInputs[i] = 0;
+    }
+  });
+
+  if(normalizedInputs.length !== 9) {
+    console.log("Normalized inputs length only " + normalizedInputs.length);
+  }
+
+  // Creates new networks
+  for(let i = 0; i < 10; i++) {
+    networks[i] = new NeuralNetwork(9,12,9);
+  }
+
+  // Generates outputs for all networks
+  networks.map((nn, i) => {
+    outputs[i] = nn.feedForward(normalizedInputs);
+  });
+
+  // Get highest scoring move for each network
+  let highestMove = { index: 0, score: 0 };
+  outputs.map((output, i) => {
+    output.map((score, i) => {
+      if(score > highestMove.score) {
+        highestMove.score = score;
+        highestMove.index = i;
+      }
+    })
+    optimalMoves[i] = { index: highestScoringIndex, score: highestScore };
+  });
+
+  // Get Highest Scoring Optimal Move
+  highestMove = { index: 0, score: 0 };
+  optimalMoves.map((move, i) => {
+    if(move.score > highestMove.score) {
+      highestMove = move;
+    }
+  });
+}

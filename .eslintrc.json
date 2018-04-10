@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jquery": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": [
+          "error",
+          {
+            "vars": "all",
+            "args": "all",
+            "ignoreRestSiblings": false
+          }
+        ],
+        "no-console": 0
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    }
+}

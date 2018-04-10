@@ -1,0 +1,21 @@
+{
+  "name": "nn-tictactoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "babel": "babel --presets env src -o build/main.bundle.js",
+    "start": "webpack-dev-server --open",
+    "webpack": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "jquery": "^3.3.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
+}
